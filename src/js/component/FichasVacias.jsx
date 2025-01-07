@@ -1,16 +1,16 @@
 import React from "react";
 
 
-const FichasVacias = ({ x, y, updateBoard }) => {
-    const handleClick = () => {
-        console.log("a ver");
-        updateBoard(x, y)
+const FichasVacias = ({ ficha, handleClick, position }) => {
 
-    }
 
     return (
 
-        <div onClick={handleClick}></div>
+        <div className="x-100 h-100" onClick={() => {
+            console.log("click");
+
+            handleClick(position)
+        }}></div>
     )
 }
 

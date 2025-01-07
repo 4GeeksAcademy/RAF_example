@@ -1,10 +1,10 @@
 import PropTypes from "prop-types";
 import React from "react";
 
-const FichasX = (prop)=>{
+const FichasX = ({ ficha, handleClick, position }) => {
     return (
         <>
-            <p className="fichas Ficha-X">{prop.ficha}</p>
+            <p className="fichas Ficha-X" onClick={() => { handleClick(position) }}>{ficha}</p>
         </>
     )
 }

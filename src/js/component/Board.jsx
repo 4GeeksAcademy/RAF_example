@@ -16,9 +16,8 @@ const Board = () => {
     //const [playerTwo, setPlayerTwo] = useState(false);
     const [matrix, setMatrix] = useState([["", "", ""], ["", "", ""], ["", "", ""]]);
     const [turn, setTurn] = useState(turns.X);
-    const [winPlayerOne, setWinPlayerOne] = useState(false);
-    const [winPlayerTwo, setWinPlayerTwo] = useState(false);
-    
+    const [winPlayer, setWinPlayer] = useState(null);
+        
 
     //estado para que inicie el juego
     /* const PlayerVsPlayer = () => {
@@ -27,11 +26,40 @@ const Board = () => {
      };*/
 
     const probabilidades = [
-        if([[0][0], [0][1], [0][2]],
-        [[1][0], [1][1], [1][2]],)
-    ]
+        [[0][0], [0][1], [0][2]],
+        [[1][0], [1][1], [1][2]],
+        [[2][0], [2][1], [2][2]],
+        [[0][0], [1][0], [2][0]],
+        [[0][1], [1][1], [2][1]],
+        [[0][2], [1][2], [2][2]],
+        [[0][0], [1][1], [2][2]],
+        [[0][2], [1][1], [2][0]]
+    ];
+
+    console.log(probabilidades);
+    
+
+  /*  const winningChances = (checkWin) =>{
+        for (let win of probabilidades){
+            
+            let [a, b, c] = win
+            if(
+                checkWin[a] && 
+                checkWin[a] === checkWin[b] &&
+                checkWin[a] === checkWin[c]
+            )
+            console.log(win);
+            
+            return checkWin[a]
+        }
+        return null
+    }*/
+
+
 
     const updateBoard = (index, index1) => {
+        if(winPlayer) return
+
         const newBoard = [...matrix]
         newBoard[index][index1] = turn
         console.log(newBoard);
@@ -40,7 +68,10 @@ const Board = () => {
         const newTurn = turn === turns.X ? turns.O : turns.X
         setTurn(newTurn)
 
-        
+        const newWinner = winningChances(newBoard)
+        if(newWinner){
+            setWinPlayer(newWinner)
+        }
     };
 
     const handleClick = (ficha) => {
